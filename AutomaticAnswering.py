@@ -173,7 +173,7 @@ if __name__=='__main__':
         #v2w_model = gensim.models.KeyedVectors.load("./w2vecmodel.mod")
         #print("Loaded w2v model")
         #except:
-        v2w_model = api.load('text8')
+        v2w_model = api.load('glove-twitter-200')
         v2w_model.save("./w2vecmodel.mod")
         print("Saved w2v model")
 
