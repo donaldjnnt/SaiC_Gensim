@@ -18,6 +18,7 @@ import re
 import gensim
 from gensim.parsing.preprocessing import remove_stopwords
 
+
 #from nltk.stem.lancaster import LancasterStemmer
 
 def clean_sentence(sentence, stopwords=False):
@@ -151,8 +152,18 @@ if __name__=='__main__':
         question=clean_sentence(question_orig,stopwords=False);
         question_embedding = dictionary.doc2bow(question.split())
 
-        v2w_model = gensim.models.KeyedVectors.load_word2vec_format('C:/Users/MADDIKUNTA/Downloads/GoogleNews-vectors-negative300.bin.gz', binary=True, limit = 100000)
+        #v2w_model = gensim.models.KeyedVectors.load_word2vec_format('C:/Users/MADDIKUNTA/Downloads/GoogleNews-vectors-negative300.bin.gz', binary=True, limit = 100000)
         #b=getPhraseEmbedding(phrase,embeddingmodel)
+        v2w_model=None;
+        try:
+            v2w_model = gensim.models.KeyedVectors.load("./w2vecmodel.mod")
+            print("Loaded w2v model")
+        except:
+            v2w_model = api.load('word2vec-google-news-300')
+            v2w_model.save("./w2vecmodel.mod")
+            print("Saved w2v model")
+
+        w2vec_embedding_size=len(v2w_model['computer']);
         sent_embeddings=[];
         for sent in cleaned_sentences:
             sent_embeddings.append(getPhraseEmbedding(sent,v2w_model));
