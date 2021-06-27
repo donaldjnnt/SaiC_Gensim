@@ -21,6 +21,9 @@ from gensim.parsing.preprocessing import remove_stopwords
 from gensim.test.utils import lee_corpus_list
 from gensim.models import Word2Vec
 from gensim.models import KeyedVectors
+from gensim.test.utils import datapath, get_tmpfile
+from gensim.models import KeyedVectors
+from gensim.scripts.glove2word2vec import glove2word2vec
 
 #from nltk.stem.lancaster import LancasterStemmer
 
@@ -156,10 +159,14 @@ if __name__=='__main__':
         question_embedding = dictionary.doc2bow(question.split())
 
         #v2w_model = gensim.models.KeyedVectors.load_word2vec_format('C:/Users/MADDIKUNTA/Downloads/GoogleNews-vectors-negative300.bin.gz', binary=True, limit = 100000)
-        model = Word2Vec(lee_corpus_list, vector_size=24, epochs=100)
-        word_vectors = model.wv
-        word_vectors.save('vectors.kv')
-        v2w_model = KeyedVectors.load('vectors.kv')
+        glove_file = datapath('/Users/manning/Corpora/GloVe/glove.6B.100d.txt')
+        word2vec_glove_file = get_tmpfile("glove.6B.100d.word2vec.txt")
+        glove2word2vec(glove_file, word2vec_glove_file)
+        v2w_model = KeyedVectors.load_word2vec_format(word2vec_glove_file)
+        #model = Word2Vec(lee_corpus_list, vector_size=24, epochs=100)
+        #word_vectors = model.wv
+        #word_vectors.save('vectors.kv')
+        #v2w_model = KeyedVectors.load('vectors.kv')
         #b=getPhraseEmbedding(phrase,embeddingmodel)
         #v2w_model=None;
         #try:
@@ -170,7 +177,7 @@ if __name__=='__main__':
         #    v2w_model.save("./w2vecmodel.mod")
         #    print("Saved w2v model")
 
-        #w2vec_embedding_size=len(v2w_model['computer']);
+        w2vec_embedding_size=len(v2w_model['computer']);
         sent_embeddings=[];
         for sent in cleaned_sentences:
             sent_embeddings.append(getPhraseEmbedding(sent,v2w_model));
