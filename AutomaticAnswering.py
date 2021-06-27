@@ -18,6 +18,9 @@ import re
 import gensim
 from gensim.parsing.preprocessing import remove_stopwords
 
+from gensim.test.utils import lee_corpus_list
+from gensim.models import Word2Vec
+from gensim.models import KeyedVectors
 
 #from nltk.stem.lancaster import LancasterStemmer
 
@@ -153,11 +156,15 @@ if __name__=='__main__':
         question_embedding = dictionary.doc2bow(question.split())
 
         #v2w_model = gensim.models.KeyedVectors.load_word2vec_format('C:/Users/MADDIKUNTA/Downloads/GoogleNews-vectors-negative300.bin.gz', binary=True, limit = 100000)
+        model = Word2Vec(lee_corpus_list, vector_size=24, epochs=100)
+        word_vectors = model.wv
+        word_vectors.save('vectors.kv')
+        v2w_model = KeyedVectors.load('vectors.kv')
         #b=getPhraseEmbedding(phrase,embeddingmodel)
-        v2w_model=None;
+        #v2w_model=None;
         #try:
-        v2w_model = gensim.models.KeyedVectors.load("./w2vecmodel.mod")
-        print("Loaded w2v model")
+        #v2w_model = gensim.models.KeyedVectors.load("./w2vecmodel.mod")
+        #print("Loaded w2v model")
         #except:
         #    v2w_model = api.load('word2vec-google-news-300')
         #    v2w_model.save("./w2vecmodel.mod")
