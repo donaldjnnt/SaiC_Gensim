@@ -170,7 +170,7 @@ if __name__=='__main__':
         #    v2w_model.save("./w2vecmodel.mod")
         #    print("Saved w2v model")
 
-        w2vec_embedding_size=len(v2w_model['computer']);
+        #w2vec_embedding_size=len(v2w_model['computer']);
         sent_embeddings=[];
         for sent in cleaned_sentences:
             sent_embeddings.append(getPhraseEmbedding(sent,v2w_model));
