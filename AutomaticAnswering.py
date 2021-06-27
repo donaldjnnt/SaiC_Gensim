@@ -159,7 +159,7 @@ if __name__=='__main__':
         question_embedding = dictionary.doc2bow(question.split())
 
         #v2w_model = gensim.models.KeyedVectors.load_word2vec_format('C:/Users/MADDIKUNTA/Downloads/GoogleNews-vectors-negative300.bin.gz', binary=True, limit = 100000)
-        glove_file = datapath('\Users\Darcey\Downloads\SaiC_Gensim_GITHUB\GoogleNews-vectors-negative300.bin.gz')
+        glove_file = datapath(r'\Users\Darcey\Downloads\SaiC_Gensim_GITHUB\GoogleNews-vectors-negative300.bin.gz')
         word2vec_glove_file = get_tmpfile("glove.6B.100d.word2vec.txt")
         glove2word2vec(glove_file, word2vec_glove_file)
         v2w_model = KeyedVectors.load_word2vec_format(word2vec_glove_file)
