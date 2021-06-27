@@ -11,7 +11,7 @@ Original file is located at
 import streamlit as st
 import numpy as np
 import pandas as pd
-df = pd.read_excel(r'C:\Users\MADDIKUNTA\Downloads\train.xlsx')
+df = pd.read_excel('train.xlsx')
 
 
 import re
