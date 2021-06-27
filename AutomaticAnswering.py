@@ -155,13 +155,13 @@ if __name__=='__main__':
         #v2w_model = gensim.models.KeyedVectors.load_word2vec_format('C:/Users/MADDIKUNTA/Downloads/GoogleNews-vectors-negative300.bin.gz', binary=True, limit = 100000)
         #b=getPhraseEmbedding(phrase,embeddingmodel)
         v2w_model=None;
-        try:
-            v2w_model = gensim.models.KeyedVectors.load("./w2vecmodel.mod")
-            print("Loaded w2v model")
-        except:
-            v2w_model = api.load('word2vec-google-news-300')
-            v2w_model.save("./w2vecmodel.mod")
-            print("Saved w2v model")
+        #try:
+        v2w_model = gensim.models.KeyedVectors.load("./w2vecmodel.mod")
+        print("Loaded w2v model")
+        #except:
+        #    v2w_model = api.load('word2vec-google-news-300')
+        #    v2w_model.save("./w2vecmodel.mod")
+        #    print("Saved w2v model")
 
         w2vec_embedding_size=len(v2w_model['computer']);
         sent_embeddings=[];
