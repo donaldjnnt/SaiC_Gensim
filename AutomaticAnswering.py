@@ -10,7 +10,7 @@ Original file is located at
 import streamlit as st
 import numpy as np
 import pandas as pd
-df = pd.read_excel(r'C:\Users\Sai\Documents\Deepsphere AI\train.xlsx')
+df = pd.read_excel('train.xlsx')
 
 
 import re
@@ -154,7 +154,7 @@ if __name__=='__main__':
 
         
         glove_model=None;
-        glove_model = api.load(r'C:\Users\Sai\Downloads\glovemodel.mod')
+        glove_model = api.load('glovemodel.mod')
         
         
         sent_embeddings=[];
