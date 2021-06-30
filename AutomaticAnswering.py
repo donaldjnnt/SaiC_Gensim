@@ -154,7 +154,7 @@ if __name__=='__main__':
 
         
         glove_model=None;
-        glove_model = api.load('glovemodel.mod')
+        glove_model = api.load('glove-twitter-25')
         
         
         sent_embeddings=[];
